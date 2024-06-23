@@ -1,0 +1,115 @@
+name: roof-admin
+run-name: roof-admin
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+  build:
+    needs: lint
+    runs-on: ubuntu-latest
+    # env:
+    #   NEXT_PUBLIC_DO_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_DO_ACCESS_KEY }}
+    #   NEXT_PUBLIC_DO_BUCKET: ${{ secrets.NEXT_PUBLIC_DO_BUCKET }}
+    #   NEXT_PUBLIC_DO_ENDPOINT: ${{ secrets.NEXT_PUBLIC_DO_ENDPOINT }}
+    #   NEXT_PUBLIC_DO_NAME_KEY: ${{ secrets.NEXT_PUBLIC_DO_NAME_KEY }}
+    #   NEXT_PUBLIC_DO_SECRET_ACCES_KEY: ${{ secrets.NEXT_PUBLIC_DO_SECRET_ACCES_KEY }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      # - name: Creating .env file
+      #   run: |
+      #     touch .env
+      #     echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL}}" >> .env
+      #     echo "NEXT_PUBLIC_DO_ACCESS_KEY=${{secrets.NEXT_PUBLIC_DO_ACCESS_KEY}}" >> .env
+      #     echo "NEXT_PUBLIC_DO_BUCKET=${{secrets.NEXT_PUBLIC_DO_BUCKET}}" >> .env
+      #     echo "NEXT_PUBLIC_DO_ENDPOINT=${{secrets.NEXT_PUBLIC_DO_ENDPOINT}}" >> .env
+      #     echo "NEXT_PUBLIC_DO_NAME_KEY=${{secrets.NEXT_PUBLIC_DO_NAME_KEY}}" >> .env
+      #     echo "NEXT_PUBLIC_DO_SECRET_ACCES_KEY=${{secrets.NEXT_PUBLIC_DO_SECRET_ACCES_KEY}}" >> .env
+      #     echo "NEXT_PUBLIC_IMAGE_URL=${{secrets.NEXT_PUBLIC_IMAGE_URL}}" >> .env
+      #     echo "NEXT_PUBLIC_TOKEN=${{secrets.NEXT_PUBLIC_TOKEN}}" >> .env
+      #     echo "NEXT_PUBLIC_TOKEN_NAME=${{secrets.NEXT_PUBLIC_TOKEN_NAME}}" >> .env
+
+      # - name: Deploy
+      #   run: |
+      #     cd ..
+      #     pm2 stop roof-website
+      #     pm2 start roof-website
+      #     pm2 save
+      #     sudo service nginx restart
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Test
+        run: npm run test
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # - name: Install dependencies
+      #   run: npm install
+
+      # - name: Deploy
+      #   run: |
+      #     cd ..
+      #     pm2 stop roof-website
+      #     pm2 start roof-website
+      #     pm2 save
+      #     sudo service nginx restart
