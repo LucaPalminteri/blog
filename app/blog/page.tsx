@@ -60,7 +60,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           ) : (
             <p>Nothing to see here yet</p>
           )}
-          <QueryPagination totalPages={totalPages} className="justify-end mt-4" />
+          {totalPages > 1 && <QueryPagination totalPages={totalPages} className="justify-end mt-4" />}
         </div>
       </div>
     </div>
