@@ -1,115 +1,145 @@
-name: roof-admin
-run-name: roof-admin
+name: blog
+run-name: blog
 on:
   push:
     branches:
       - "*"
 
 jobs:
-  lint:
-    name: lint
-    runs-on: ubuntu-latest
+  #   lint:
+  #     name: lint
+  #     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  #     steps:
+  #       - name: Checkout code
+  #         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
+  #       - name: Set up Node.js
+  #         uses: actions/setup-node@v4
+  #         with:
+  #           node-version: "20"
 
-      - name: Install dependencies
-        run: npm install
+  #       - name: Install dependencies
+  #         run: npm install
 
-      - name: Lint
-        run: npm run lint
+  #       - name: Lint
+  #         run: npm run lint
 
-  build:
-    needs: lint
-    runs-on: ubuntu-latest
-    # env:
-    #   NEXT_PUBLIC_DO_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_DO_ACCESS_KEY }}
-    #   NEXT_PUBLIC_DO_BUCKET: ${{ secrets.NEXT_PUBLIC_DO_BUCKET }}
-    #   NEXT_PUBLIC_DO_ENDPOINT: ${{ secrets.NEXT_PUBLIC_DO_ENDPOINT }}
-    #   NEXT_PUBLIC_DO_NAME_KEY: ${{ secrets.NEXT_PUBLIC_DO_NAME_KEY }}
-    #   NEXT_PUBLIC_DO_SECRET_ACCES_KEY: ${{ secrets.NEXT_PUBLIC_DO_SECRET_ACCES_KEY }}
+  #   build:
+  #     needs: lint
+  #     runs-on: ubuntu-latest
+  #     # env:
+  #     #   NEXT_PUBLIC_DO_ACCESS_KEY: ${{ secrets.NEXT_PUBLIC_DO_ACCESS_KEY }}
+  #     #   NEXT_PUBLIC_DO_BUCKET: ${{ secrets.NEXT_PUBLIC_DO_BUCKET }}
+  #     #   NEXT_PUBLIC_DO_ENDPOINT: ${{ secrets.NEXT_PUBLIC_DO_ENDPOINT }}
+  #     #   NEXT_PUBLIC_DO_NAME_KEY: ${{ secrets.NEXT_PUBLIC_DO_NAME_KEY }}
+  #     #   NEXT_PUBLIC_DO_SECRET_ACCES_KEY: ${{ secrets.NEXT_PUBLIC_DO_SECRET_ACCES_KEY }}
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  #     steps:
+  #       - name: Checkout code
+  #         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
+  #       - name: Set up Node.js
+  #         uses: actions/setup-node@v4
+  #         with:
+  #           node-version: "20"
 
-      - name: Install dependencies
-        run: npm install
+  #       - name: Install dependencies
+  #         run: npm install
 
-      - name: Build
-        run: npm run build
+  #       - name: Build
+  #         run: npm run build
 
-      # - name: Creating .env file
-      #   run: |
-      #     touch .env
-      #     echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL}}" >> .env
-      #     echo "NEXT_PUBLIC_DO_ACCESS_KEY=${{secrets.NEXT_PUBLIC_DO_ACCESS_KEY}}" >> .env
-      #     echo "NEXT_PUBLIC_DO_BUCKET=${{secrets.NEXT_PUBLIC_DO_BUCKET}}" >> .env
-      #     echo "NEXT_PUBLIC_DO_ENDPOINT=${{secrets.NEXT_PUBLIC_DO_ENDPOINT}}" >> .env
-      #     echo "NEXT_PUBLIC_DO_NAME_KEY=${{secrets.NEXT_PUBLIC_DO_NAME_KEY}}" >> .env
-      #     echo "NEXT_PUBLIC_DO_SECRET_ACCES_KEY=${{secrets.NEXT_PUBLIC_DO_SECRET_ACCES_KEY}}" >> .env
-      #     echo "NEXT_PUBLIC_IMAGE_URL=${{secrets.NEXT_PUBLIC_IMAGE_URL}}" >> .env
-      #     echo "NEXT_PUBLIC_TOKEN=${{secrets.NEXT_PUBLIC_TOKEN}}" >> .env
-      #     echo "NEXT_PUBLIC_TOKEN_NAME=${{secrets.NEXT_PUBLIC_TOKEN_NAME}}" >> .env
+  #       # - name: Creating .env file
+  #       #   run: |
+  #       #     touch .env
+  #       #     echo "NEXT_PUBLIC_BASE_URL=${{ secrets.NEXT_PUBLIC_BASE_URL}}" >> .env
+  #       #     echo "NEXT_PUBLIC_DO_ACCESS_KEY=${{secrets.NEXT_PUBLIC_DO_ACCESS_KEY}}" >> .env
+  #       #     echo "NEXT_PUBLIC_DO_BUCKET=${{secrets.NEXT_PUBLIC_DO_BUCKET}}" >> .env
+  #       #     echo "NEXT_PUBLIC_DO_ENDPOINT=${{secrets.NEXT_PUBLIC_DO_ENDPOINT}}" >> .env
+  #       #     echo "NEXT_PUBLIC_DO_NAME_KEY=${{secrets.NEXT_PUBLIC_DO_NAME_KEY}}" >> .env
+  #       #     echo "NEXT_PUBLIC_DO_SECRET_ACCES_KEY=${{secrets.NEXT_PUBLIC_DO_SECRET_ACCES_KEY}}" >> .env
+  #       #     echo "NEXT_PUBLIC_IMAGE_URL=${{secrets.NEXT_PUBLIC_IMAGE_URL}}" >> .env
+  #       #     echo "NEXT_PUBLIC_TOKEN=${{secrets.NEXT_PUBLIC_TOKEN}}" >> .env
+  #       #     echo "NEXT_PUBLIC_TOKEN_NAME=${{secrets.NEXT_PUBLIC_TOKEN_NAME}}" >> .env
 
-      # - name: Deploy
-      #   run: |
-      #     cd ..
-      #     pm2 stop roof-website
-      #     pm2 start roof-website
-      #     pm2 save
-      #     sudo service nginx restart
+  #       # - name: Deploy
+  #       #   run: |
+  #       #     cd ..
+  #       #     pm2 stop roof-website
+  #       #     pm2 start roof-website
+  #       #     pm2 save
+  #       #     sudo service nginx restart
 
-  test:
-    needs: build
-    runs-on: ubuntu-latest
+  #   test:
+  #     needs: build
+  #     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  #     steps:
+  #       - name: Checkout code
+  #         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
+  #       - name: Set up Node.js
+  #         uses: actions/setup-node@v4
+  #         with:
+  #           node-version: "20"
 
-      - name: Install dependencies
-        run: npm install
+  #       - name: Install dependencies
+  #         run: npm install
 
-      - name: Test
-        run: npm run test
+  #       - name: Test
+  #         run: npm run test
 
   deploy:
-    needs: test
+    # needs: test
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Login to Docker Hub (optional)
+        if: ${{ secrets.DOCKERHUB_USERNAME }}
+        uses: docker/login-action@v2
         with:
-          node-version: "20"
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      # - name: Install dependencies
-      #   run: npm install
+      - name: Build and push Docker image (optional)
+        if: ${{ secrets.DOCKERHUB_USERNAME }}
+        run: docker push <your_username>/my-nextjs-app:latest
 
-      # - name: Deploy
-      #   run: |
-      #     cd ..
-      #     pm2 stop roof-website
-      #     pm2 start roof-website
-      #     pm2 save
-      #     sudo service nginx restart
+      - name: SSH to DigitalOcean Droplet
+        uses: digitalocean/action-do-ssh@v2
+        with:
+          private_key: ${{ secrets.DO_PRIVATE_KEY }}
+          host: ${{ secrets.DO_HOST }}
+          user: ${{ secrets.DO_USER }}
+
+      - name: Pull latest Docker images
+        run: docker-compose pull
+
+      - name: Run the application
+        run: docker-compose up -d
+
+    # needs: test
+    # runs-on: ubuntu-latest
+
+    # steps:
+    #   - name: Checkout code
+    #     uses: actions/checkout@v4
+
+    #   - name: Set up Node.js
+    #     uses: actions/setup-node@v4
+    #     with:
+    #       node-version: "20"
+
+    # - name: Install dependencies
+    #   run: npm install
+
+    # - name: Deploy
+    #   run: |
+    #     cd ..
+    #     pm2 stop roof-website
+    #     pm2 start roof-website
+    #     pm2 save
+    #     sudo service nginx restart
